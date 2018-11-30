@@ -8,6 +8,11 @@ const completado = {
     alias: 'c',
     desc: 'Marca como completado o pendiente la tarea'
 }
+const completadoOpcional = {
+    demand: false,
+    alias: 'c',
+    desc: 'Descripción del tipo de tareas por ver (Completadas / No completadas)'
+}
 
 const argv = require('yargs')
     .command('crear', 'Crear un elemento por hacer', {
@@ -19,6 +24,9 @@ const argv = require('yargs')
     })
     .command('borrar', 'Elimina un elemento del listado de tareas', {
         descripcion
+    })
+    .command('listar', 'Muestra en pantalla las tareas', {
+        completadoOpcional
     })
     .help()
     .argv;

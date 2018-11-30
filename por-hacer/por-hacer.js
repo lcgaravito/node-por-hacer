@@ -32,6 +32,12 @@ const getListado = () => {
     return listadoPorHacer;
 }
 
+const getListadoFilter = (completado) => {
+    cargarDB();
+    let nuevoListado = listadoPorHacer.filter(tarea => tarea.completado === JSON.parse(completado));
+    return nuevoListado;
+}
+
 const actualizar = (descripcion, completado = true) => {
     cargarDB();
     // let index = listadoPorHacer.findIndex(tarea => {
@@ -39,7 +45,7 @@ const actualizar = (descripcion, completado = true) => {
     // });
     let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
     if (index >= 0) {
-        listadoPorHacer[index].completado = completado;
+        listadoPorHacer[index].completado = JSON.parse(completado);
         guardarDB();
         return true;
     } else {
@@ -76,6 +82,7 @@ const borrar = (descripcion) => {
 module.exports = {
     crear,
     getListado,
+    getListadoFilter,
     actualizar,
     borrar
 }

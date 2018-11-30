@@ -11,7 +11,13 @@ switch (comando) {
         console.log(tarea);
         break;
     case 'listar':
-        let listado = porHacer.getListado();
+        console.log(argv);
+        let listado = [];
+        if (argv.completadoOpcional) {
+            listado = porHacer.getListadoFilter(argv.completadoOpcional);
+        } else {
+            listado = porHacer.getListado();
+        }
         for (let tarea of listado) {
             console.log('============================='.green);
             console.log(tarea.descripcion);
